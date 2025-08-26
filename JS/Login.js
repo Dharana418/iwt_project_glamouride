@@ -1,39 +1,31 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const passwordInput = document.getElementById('password');
-    const icon = document.getElementById('pass-icon');
-    const form = document.getElementById('login-form');
-    const emailInput = document.getElementById('email');
-    const errorMessage = document.getElementById('error-message');
+document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-    icon.addEventListener('click', () => {
-        const isPassword = passwordInput.type === 'password';
-        passwordInput.type = isPassword ? 'text' : 'password';
-        icon.src = isPassword
-            ? '../images/show-password.png'
-            : '../images/hide_8088557.png';
-    });
+    const formData = new FormData(this);
 
-    form.addEventListener('submit', (e) => {
-        const email = emailInput.value.trim();
-        const password = passwordInput.value.trim();
-
-        if (!email || !password) {
-            e.preventDefault();
-            errorMessage.style.display = 'block';
-        } else {
-            e.preventDefault();
-
-            errorMessage.style.display = 'none';
-            
+    fetch('../php/login.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'success') {
             Swal.fire({
                 icon: 'success',
                 title: 'Login Successful!',
-                text: 'Welcome back!',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK'
+                text: data.message,
+                showConfirmButton: true,
+                timer: 2000
             }).then(() => {
-                window.location.href = '../Html/AdminDashboard.html';
+                window.location.href = data.redirect;
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed',
+                text: data.message
             });
         }
-    });
+    })
+    .catch(err => console.error(err));
 });

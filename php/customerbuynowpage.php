@@ -33,24 +33,29 @@ if (!$product) {
 <body>
     <div class="buy-container">
         <h1>Buy Now</h1>
-        <form action="../php/process_buy.php" method="POST" class="buy-form">
+
+        <form action="../php/customerpackageinsert.php" method="POST" class="buy-form">
             <input type="hidden" name="package_id" value="<?php echo htmlspecialchars($product['id']); ?>">
+            <input type="hidden" name="price" value="<?php echo htmlspecialchars($product['price']); ?>">
 
             <div class="product-card">
-                <img src="../uploads/<?php echo htmlspecialchars($product['image']); ?>" 
+                <img src="../php/uploads/<?php echo htmlspecialchars($product['image']); ?>" 
                      alt="<?php echo htmlspecialchars($product['title']); ?>">
 
                 <h2><?php echo htmlspecialchars($product['title']); ?></h2>
-                <p class="price">price per 1km: <?php echo number_format($product['price'], 2); ?></p>
-                <label>Distance are you expecting to travel:</label>
+                <p class="price">Price per 1km: Rs. <?php echo number_format($product['price'], 2); ?></p>
+
+                <label>Distance you expect to travel:</label>
                 <input type="number" id="distance" name="distance" required>
+
                 <p class="total-price">Total Price: <span id="total-price"></span></p>
                 <button type="button" id="calculate-btn">Calculate</button>
             </div>
 
-            <button type="submit" class="buy-btn">Submit</button>
+            <button type="submit" class="buy-btn" name="submit">Buy Now</button>
         </form>
     </div>
+
     <script>
         var pricePerKm = <?php echo $product['price']; ?>;
     </script>

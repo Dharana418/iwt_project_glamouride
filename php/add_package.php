@@ -13,7 +13,7 @@ if(isset($_POST['add-package'])){
         echo "<script>alert('This package is already registered!');</script>";
         exit;
     }
-    $folder = 'uploads/';
+    $folder = '../php/uploads/';
     $image_file = $_FILES['image']['name']; 
     $file = $_FILES['image']['tmp_name'];     
     $target_file = $folder . basename($image_file);

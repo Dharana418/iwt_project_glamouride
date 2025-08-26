@@ -19,6 +19,7 @@
             <p>Don't have an account? <a href="./Registration.php">Register</a></p>
         </form> 
     </div>
-    <script defer src="../JS/Login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../JS/login.js"></script>
 </body>
 </html>

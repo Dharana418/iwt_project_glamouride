@@ -71,7 +71,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         echo "<td>".$row['price']."</td>";
 
         if (!empty($row['image'])) {
-    echo "<td><img src='../uploads/".$row['image']."' class='package-image' width='100'></td>";
+    echo "<td><img src='../php/uploads/".$row['image']."' class='package-image' width='100'></td>";
 } else {
     echo "<td><span style='color:red;'>No image</span></td>";
 }

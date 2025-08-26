@@ -35,8 +35,8 @@ $result = $conn->query($sql);
   <?php while ($row = $result->fetch_assoc()): ?>
     <div class="package-card">
       <div class="image">
-        <img src="../uploads/<?php echo htmlspecialchars($row['image']); ?>" 
-             alt="<?php echo htmlspecialchars($row['title']); ?>">
+       <img src="../php/uploads/<?php echo htmlspecialchars($row['image']); ?>" 
+     alt="<?php echo htmlspecialchars($row['title']); ?>">
       </div>
       <h2><?php echo htmlspecialchars($row['title']); ?></h2>
       <h4>Description:</h4>
