@@ -1,10 +1,6 @@
 <?php
 include 'connect.php';
-
-// Get user ID from URL
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-// Fetch existing user data
 $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
