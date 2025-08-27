@@ -24,27 +24,27 @@ $result = $conn->query($sql);
       </div>
       <h1>GlamourRide</h1>
       <ul class="horizontal-list">
-        <li><a href="../php/displapackages.php">Bookings</a></li>
-         <li><a href="../Html/Login.php">Feedback</a></li>
-        <li><a href="../">Profile</a></li>
-        <li><a href="../Html/Login.php">Logout</a></li>
+        <li><a href="../php/customerreaddetails.php">Bookings</a></li>
+        <li><a href="../Html/Feedback.php">Feedback</a></li>
+        <li><a href="../php/profile.php">Profile</a></li>
+        <li><a href="../php/logout.php">Logout</a></li>
       </ul>
   </header>
 
- <div class="package-container">
-  <?php while ($row = $result->fetch_assoc()): ?>
-    <div class="package-card">
-      <div class="image">
-       <img src="../php/uploads/<?php echo htmlspecialchars($row['image']); ?>" 
-     alt="<?php echo htmlspecialchars($row['title']); ?>">
+  <div class="package-container">
+    <?php while ($row = $result->fetch_assoc()): ?>
+      <div class="package-card">
+        <div class="image">
+          <img src="../php/uploads/<?php echo htmlspecialchars($row['image']); ?>" 
+               alt="<?php echo htmlspecialchars($row['title']); ?>">
+        </div>
+        <h2><?php echo htmlspecialchars($row['title']); ?></h2>
+        <h4>Description:</h4>
+        <p><?php echo htmlspecialchars($row['description']); ?></p>
+        <p>Price per 1KM: Rs. <?php echo htmlspecialchars($row['price']); ?></p>
+        <button onclick="location.href='../php/customerbuynowpage.php?id=<?php echo $row['id']; ?>'">Buy now</button>
       </div>
-      <h2><?php echo htmlspecialchars($row['title']); ?></h2>
-      <h4>Description:</h4>
-      <p><?php echo htmlspecialchars($row['description']); ?></p>
-      <p>Price per 1KM: Rs. <?php echo htmlspecialchars($row['price']); ?></p>
-      <button id="<?php echo $row['id']; ?>" onclick="location.href='../php/customerbuynowpage.php?id=<?php echo $row['id']; ?>'">Buy now</button>
-    </div>
-  <?php endwhile; ?>
-</div>
+    <?php endwhile; ?>
+  </div>
 </body>
 </html>

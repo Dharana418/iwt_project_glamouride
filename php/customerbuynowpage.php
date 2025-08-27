@@ -6,6 +6,7 @@ if (!isset($_SESSION['email'])) {
     header("Location: ../Html/Login.php");
     exit();
 }
+
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     die("Invalid package ID.");
 }
@@ -49,23 +50,24 @@ if (!$product) {
                 <button type="button" id="calculate-btn">Calculate</button>
             </div>
 
-           <button type="submit" name="buy" class="buy-btn">Submit</button>
-
+            <button type="submit" name="buy" class="buy-btn">Submit</button>
         </form>
     </div>
 
-  <script>
+<script>
     var pricePerKm = <?php echo $product['price']; ?>;
 </script>
 <script src="../JS/customerpricecalculate.js"></script>
 </body>
 </html>
+
 <?php
 if (isset($_POST['buy'])) {
     $distance = $_POST['distance'];
     $total_price = $distance * $product['price'];
     $user_email = $_SESSION['email'];
     $package_id = $product['id'];
+    $packagename = $product['title'];
     $check_stmt = $conn->prepare("SELECT * FROM registrations WHERE user_email = ? AND package_id = ?");
     $check_stmt->bind_param("si", $user_email, $package_id);
     $check_stmt->execute();
@@ -83,9 +85,10 @@ if (isset($_POST['buy'])) {
         });
         </script>";
     } else {
-        $stmt = $conn->prepare("INSERT INTO registrations (user_email, package_id, total_distance, total_price, registered_at) 
-                                VALUES (?, ?, ?, ?, NOW())");
-        $stmt->bind_param("siid", $user_email, $package_id, $distance, $total_price);
+        $stmt = $conn->prepare("INSERT INTO registrations 
+            (user_email, package_id, package_name, total_distance, total_price, registered_at) 
+            VALUES (?, ?, ?, ?, ?, NOW())");
+        $stmt->bind_param("sisid", $user_email, $package_id, $packagename, $distance, $total_price);
 
         if ($stmt->execute()) {
             echo "<script>
