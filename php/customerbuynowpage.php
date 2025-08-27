@@ -68,6 +68,7 @@ if (isset($_POST['buy'])) {
     $user_email = $_SESSION['email'];
     $package_id = $product['id'];
     $packagename = $product['title'];
+    $priceperkm=$product['price'];
     $check_stmt = $conn->prepare("SELECT * FROM registrations WHERE user_email = ? AND package_id = ?");
     $check_stmt->bind_param("si", $user_email, $package_id);
     $check_stmt->execute();
@@ -86,9 +87,9 @@ if (isset($_POST['buy'])) {
         </script>";
     } else {
         $stmt = $conn->prepare("INSERT INTO registrations 
-            (user_email, package_id, package_name, total_distance, total_price, registered_at) 
-            VALUES (?, ?, ?, ?, ?, NOW())");
-        $stmt->bind_param("sisid", $user_email, $package_id, $packagename, $distance, $total_price);
+            (user_email, package_id, package_name, total_distance, total_price, registered_at, price_per_km) 
+            VALUES (?, ?, ?, ?, ?, NOW(), ?)");
+        $stmt->bind_param("sisids", $user_email, $package_id, $packagename, $distance, $total_price, $priceperkm);
 
         if ($stmt->execute()) {
             echo "<script>

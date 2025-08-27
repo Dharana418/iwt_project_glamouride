@@ -1,13 +1,14 @@
 <?php
-include '../php/connect.php';
 session_start();
+include '../php/connect.php';
+
 if (!isset($_SESSION['email'])) {
     header("Location: ../Html/Login.php");
     exit();
 }
 
 $userEmail = $_SESSION['email'];
-$sql = "SELECT p.title AS package_name, r.total_distance, r.total_price, r.registered_at
+$sql = "SELECT r.id, p.title AS package_name, r.total_distance, r.total_price, r.registered_at
         FROM registrations r
         INNER JOIN packages p ON r.package_id = p.id
         WHERE r.user_email = ?";
@@ -25,10 +26,7 @@ $result = $stmt->get_result();
   <link rel="stylesheet" href="../CSS/customerdisplaydetails.css"/>
 </head>
 <body>
-  <h1>Welcome, <?php echo htmlspecialchars($userEmail); ?>!</h1>
-  <p>Here are your previously ordered packages:</p>
-
-  <table border="1" cellpadding="8" cellspacing="0">
+  <table class="content-table">
     <thead>
       <tr>
         <th>Package Name</th>
@@ -47,10 +45,14 @@ $result = $stmt->get_result();
               echo "<td>" . htmlspecialchars($row['total_distance']) . " km</td>";
               echo "<td>Rs. " . htmlspecialchars($row['total_price']) . "</td>";
               echo "<td>" . htmlspecialchars($row['registered_at']) . "</td>";
+              echo "<td>
+                      <a class='btn btn-primary' href='packageupdate.php?id={$row['id']}'>Update</a>
+                      <a class='btn btn-danger' href='packagedelete.php?id={$row['id']}' onclick=\"return confirm('Are you sure?');\">Delete</a>
+                    </td>";
               echo "</tr>";
           }
       } else {
-          echo "<tr><td colspan='4'>No orders found.</td></tr>";
+          echo "<tr><td colspan='5'>No orders found.</td></tr>";
       }
       ?>
     </tbody>
