@@ -40,7 +40,6 @@ include '../php/connect.php';
     <h1>GlamourRide</h1>
     <ul class="horizontal-list">
       <li><a href="../php/displapackages.php">Bookings</a></li>
-      <li><a href="../">Profile</a></li>
       <li><a href="../Html/Login.php">Logout</a></li>
     </ul>
 </header>
