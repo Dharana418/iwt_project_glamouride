@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;  
+  align-items: flex-start;
+  background: url("../images/grunge-wall-texture.jpg") no-repeat center center;
+  background-size: cover;
+  padding: 20px;
+}
+
+.content-table {
+  background: linear-gradient(135deg, #ffffff, #f1f3f6);
+  padding: 20px;
+  margin-top: 40px;   
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  max-width: 1200px;
+  width: 100%;
+  border-collapse: collapse; 
+  font-weight: bolder;
+  font-size: small;
+  
+}
+.content-table th{
+  background: #001b43;
+  color: #ffffff;
+  font-weight: bolder;
+  border: 2px ridge rgb(255, 255, 255);
+  padding: 10px;
+  text-align: center;
+}
+.content-table td {
+  border: 1px ridge black;
+  padding: 10px;
+  text-align: center;
+  font-weight: bolder;
+  font-size: small;
+  background: #ffffff;
+}
+
+.content-table thead {
+  background: #001b43;
+  color: #00193a;
+  font-weight: bolder;
+}
+
+.btn.btn-primary {
+  background-color: #007bff; 
+  color: white;
+  padding: 8px 15px;
+  text-decoration: none;
+  font-weight: bolder;
+  margin-left: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.btn-danger {
+  background-color: #dc3545; 
+  color: white;
+  padding: 8px 15px;
+  text-decoration: none;
+  font-weight: bolder;
+  margin-left: 10px;
+  border: none;
+  cursor: pointer;
+}
