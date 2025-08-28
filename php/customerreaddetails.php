@@ -8,7 +8,7 @@ if (!isset($_SESSION['email'])) {
 }
 
 $userEmail = $_SESSION['email'];
-$sql = "SELECT r.id, p.title AS package_name, r.total_distance, r.total_price, r.registered_at
+$sql = "SELECT r.id, p.title AS package_name, r.distance, r.total_price, r.created_at
         FROM registrations r
         INNER JOIN packages p ON r.package_id = p.id
         WHERE r.user_email = ?";
@@ -42,9 +42,9 @@ $result = $stmt->get_result();
           while ($row = $result->fetch_assoc()) {
               echo "<tr>";
               echo "<td>" . htmlspecialchars($row['package_name']) . "</td>";
-              echo "<td>" . htmlspecialchars($row['total_distance']) . " km</td>";
+              echo "<td>" . htmlspecialchars($row['distance']) . " km</td>";
               echo "<td>Rs. " . htmlspecialchars($row['total_price']) . "</td>";
-              echo "<td>" . htmlspecialchars($row['registered_at']) . "</td>";
+              echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
               echo "<td>
                       <a class='btn btn-primary' href='packageupdate.php?id={$row['id']}'>Update</a>
                       <a class='btn btn-danger' href='packagedelete.php?id={$row['id']}' onclick=\"return confirm('Are you sure?');\">Delete</a>
@@ -59,3 +59,4 @@ $result = $stmt->get_result();
   </table>
 </body>
 </html>
+

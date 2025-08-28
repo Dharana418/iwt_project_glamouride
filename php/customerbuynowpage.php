@@ -1,6 +1,6 @@
 <?php
-include '../php/connect.php';
 session_start();
+include '../php/connect.php';
 
 if (!isset($_SESSION['email'])) {
     header("Location: ../Html/Login.php");
@@ -29,35 +29,68 @@ if (!$product) {
     <meta charset="UTF-8">
     <title>Buy Now</title>
     <link rel="stylesheet" href="../CSS/customerbuynow.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <body>
-    <div class="buy-container">
-        <h1>Buy Now</h1>
+<div class="buy-container">
+    <h1>Buy Now</h1>
 
-        <form action="" method="POST" class="buy-form">
-            <div class="product-card">
-                <img src="../php/uploads/<?php echo htmlspecialchars($product['image']); ?>" 
-                     alt="<?php echo htmlspecialchars($product['title']); ?>">
+    <form id="buyForm" action="" method="POST" class="buy-form">
+        <div class="product-card">
+            <img src="../php/uploads/<?php echo htmlspecialchars($product['image']); ?>" 
+                 alt="<?php echo htmlspecialchars($product['title']); ?>">
 
-                <h2><?php echo htmlspecialchars($product['title']); ?></h2>
-                <p class="price">Price per 1 km: <?php echo number_format($product['price'], 2); ?></p>
+            <h2><?php echo htmlspecialchars($product['title']); ?></h2>
+            <p class="price">Price per 1 km: Rs. <?php echo number_format($product['price'], 2); ?></p>
 
-                <label>Distance you expect to travel:</label>
-                <input type="number" id="distance" name="distance" required min="1">
+            <label>Distance you expect to travel:</label>
+            <input type="number" id="distance" name="distance" required min="1">
 
-                <p class="total-price">Total Price: <span id="total-price"></span></p>
-                <button type="button" id="calculate-btn">Calculate</button>
-            </div>
+            <p class="total-price">Total Price: <span id="total-price"></span></p>
+            <button type="button" id="calculate-btn">Calculate</button>
+        </div>
 
-            <button type="submit" name="buy" class="buy-btn">Submit</button>
-        </form>
-    </div>
+        <button type="submit" name="buy" id="submitBtn" class="buy-btn">Submit</button>
+    </form>
+</div>
 
 <script>
     var pricePerKm = <?php echo $product['price']; ?>;
+    document.getElementById('calculate-btn').addEventListener('click', function() {
+        var distance = document.getElementById('distance').value;
+        if(distance && distance > 0){
+            var total = distance * pricePerKm;
+            document.getElementById('total-price').textContent = "Rs. " + total.toFixed(2);
+        } else {
+            document.getElementById('total-price').textContent = "Enter a valid distance!";
+        }
+    });
+    document.getElementById('buyForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        var distance = document.getElementById('distance').value;
+        if(distance && distance > 0){
+            Swal.fire({
+                title: 'Confirm Order',
+                text: `Are you sure you want to order this package for ${distance} km?`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#28a745',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, order it!'
+            }).then((result) => {
+                if(result.isConfirmed){
+                    this.submit();
+                }
+            });
+        } else {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Invalid Distance',
+                text: 'Please enter a valid distance before submitting.'
+            });
+        }
+    });
 </script>
-<script src="../JS/customerpricecalculate.js"></script>
 </body>
 </html>
 
@@ -68,7 +101,7 @@ if (isset($_POST['buy'])) {
     $user_email = $_SESSION['email'];
     $package_id = $product['id'];
     $packagename = $product['title'];
-    $priceperkm=$product['price'];
+    $priceperkm = $product['price'];
     $check_stmt = $conn->prepare("SELECT * FROM registrations WHERE user_email = ? AND package_id = ?");
     $check_stmt->bind_param("si", $user_email, $package_id);
     $check_stmt->execute();
@@ -80,24 +113,24 @@ if (isset($_POST['buy'])) {
             icon: 'warning',
             title: 'Already Ordered!',
             text: 'You have already ordered this package.',
-            confirmButtonColor: '#3085d6',
+            confirmButtonColor: '#3085d6'
         }).then(() => {
             window.location.href='../Html/MyOrders.php';
         });
         </script>";
     } else {
-        $stmt = $conn->prepare("INSERT INTO registrations 
-            (user_email, package_id, package_name, total_distance, total_price, registered_at, price_per_km) 
-            VALUES (?, ?, ?, ?, ?, NOW(), ?)");
-        $stmt->bind_param("sisids", $user_email, $package_id, $packagename, $distance, $total_price, $priceperkm);
+        $insert_stmt = $conn->prepare("INSERT INTO registrations 
+            (user_email, package_id, packagename, distance, priceperkm, total_price) 
+            VALUES (?, ?, ?, ?, ?, ?)");
+        $insert_stmt->bind_param("sisidd", $user_email, $package_id, $packagename, $distance, $priceperkm, $total_price);
 
-        if ($stmt->execute()) {
+        if ($insert_stmt->execute()) {
             echo "<script>
             Swal.fire({
                 icon: 'success',
                 title: 'Order Successful!',
                 text: 'Your order has been placed successfully.',
-                confirmButtonColor: '#28a745',
+                confirmButtonColor: '#28a745'
             }).then(() => {
                 window.location.href='../Html/MyOrders.php';
             });
@@ -108,7 +141,7 @@ if (isset($_POST['buy'])) {
                 icon: 'error',
                 title: 'Error!',
                 text: 'Could not place order. Please try again later.',
-                confirmButtonColor: '#d33',
+                confirmButtonColor: '#d33'
             });
             </script>";
         }
