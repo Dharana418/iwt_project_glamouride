@@ -25,7 +25,7 @@ $result = $conn->query($sql);
       <h1>GlamourRide</h1>
       <ul class="horizontal-list">
         <li><a href="../php/customerreaddetails.php">Bookings</a></li>
-        <li><a href="../Html/Feedback.php">Feedback</a></li>
+        <li><a href="../php/feedback.php">Feedback</a></li>
         <li><a href="../php/logout.php">Logout</a></li>
       </ul>
   </header>

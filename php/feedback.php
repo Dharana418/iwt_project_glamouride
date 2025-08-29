@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <title>Customer Feedback</title>
     <style>
-        body { font-family: Arial; background: #f2f2f2; }
+        body { font-family: Arial; background: url(../images/1256875_6530.jpg) }
         .container { width: 50%; margin: 50px auto; background: white; padding: 20px; border-radius: 10px; }
         textarea { width: 100%; height: 100px; margin: 10px 0; }
         button { padding: 10px 20px; background: black; color: white; border: none; cursor: pointer; }

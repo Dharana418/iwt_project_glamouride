@@ -18,7 +18,7 @@ $result = $stmt->get_result();
 <head>
     <title>My Feedback</title>
     <style>
-        body { font-family: Arial; background: #f2f2f2; }
+        body { font-family: Arial; background:url(../images/1256875_6530.jpg); }
         .container { width: 60%; margin: 30px auto; background: white; padding: 20px; border-radius: 10px; }
         .feedback { padding: 15px; margin: 10px 0; border-bottom: 1px solid #ddd; }
         a { text-decoration: none; color: blue; }
