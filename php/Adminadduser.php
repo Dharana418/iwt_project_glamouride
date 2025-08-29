@@ -19,7 +19,7 @@ if (isset($_POST['add-button'])) {
         exit;
     }
 
-    $folder = 'uploads/';
+    $folder = '../php/uploads/';
     $image_file = $_FILES['photo']['name'];
     $file = $_FILES['photo']['tmp_name'];
     $target_file = $folder . basename($image_file);

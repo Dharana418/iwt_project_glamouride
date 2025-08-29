@@ -54,7 +54,7 @@ $result = mysqli_query($conn, $sql);
                       <td>{$row['Address']}</td>
                       <td>";
               if (!empty($row['profile_photo'])) {
-                  echo "<img src='../uploads/{$row['profile_photo']}' width='50' height='50' border-radius='50%' alt='Profile Photo' class='profile-photo'>";
+                  echo "<img src='../php/uploads/{$row['profile_photo']}' width='50' height='50' border-radius='50%' alt='Profile Photo' class='profile-photo'>";
               } else {
                   echo "No photo";
               }
