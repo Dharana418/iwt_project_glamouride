@@ -22,7 +22,7 @@ if(isset($_POST['update'])){
     $profile_photo = $row['profile_photo']; 
     if(isset($_FILES['photo']) && $_FILES['photo']['error'] == 0){
         $profile_photo = time() . "_" . $_FILES['photo']['name'];
-        move_uploaded_file($_FILES['photo']['tmp_name'], "../uploads/" . $profile_photo);
+        move_uploaded_file($_FILES['photo']['tmp_name'], "../php/uploads/" . $profile_photo);
     }
     $update_stmt = $conn->prepare("UPDATE users SET firstname=?, lastname=?, email=?, password=?, birthday=?, Address=?, profile_photo=? WHERE id=?");
     $update_stmt->bind_param("sssssssi", $firstname, $lastname, $email, $password, $birthday, $address, $profile_photo, $id);
