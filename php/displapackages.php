@@ -10,21 +10,31 @@ include '../php/connect.php';
 <html lang="en">
 <head>
   <style>
-.btn.btn-primary {
-    background-color: #007bff; 
-    color: white;
-    padding: 8px 15px;
-    text-decoration: none;
-    font-weight: bolder;
-    margin-left: 10px;
+.btn {
+    display:inline-flex;      
+    border: none;               
+    border-radius: 5px;          
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
 }
-.btn.btn-danger{
-    background-color: #dc3545; 
+
+.btn-primary {
+    background-color: #007bff;
     color: white;
-    padding: 8px 15px;
+    padding: 8px;
     text-decoration: none;
     font-weight: bolder;
-    margin-left: 10px;
+    margin: 5px;                
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    font-weight: bolder;
+    margin: 5px;
 }
   </style>
   <meta charset="UTF-8" />

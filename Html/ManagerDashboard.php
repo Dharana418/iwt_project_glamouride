@@ -19,8 +19,8 @@ session_start();
 <header>
     <h1>GlamourRide</h1>
     <nav>
-        <a href="#">Packages</a>
         <a href="../php/displapackages.php">Bookings</a>
+        <a href="../php/customerregistredpackages.php">Registered Analytics</a>
         <a href="../Html/Login.php">Logout</a>
     </nav>
 </header>
