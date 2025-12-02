@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>GlamourRide — Home</title>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="CSS/home.css">
+</head>
+<body>
+	<header class="site-header">
+		<div class="container">
+			<a class="brand" href="Index.html">GlamourRide</a>
+			<button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+				<span class="hamburger"></span>
+			</button>
+			<nav class="site-nav" id="siteNav">
+				<a href="php/displapackages.php">Packages</a>
+				<a href="Html/Registration.php">Register</a>
+				<a href="Html/Login.php">Login</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero">
+			<div class="container hero-inner hero-highlight">
+				<h1>Enjoy premium rides. Explore packages.</h1>
+				<p class="lead">Book vehicles, browse ready packages, and make every trip special with GlamourRide.</p>
+				<p class="hero-ctas">
+					<a class="btn primary" href="php/displapackages.php">View Packages</a>
+					<a class="btn" href="Html/Registration.php">Get Started</a>
+				</p>
+			</div>
+		</section>
+
+		<section class="features container">
+			<article class="feature">
+				<h3>Wide Vehicle Selection</h3>
+				<p>Cars, bikes and custom packages for every occasion.</p>
+			</article>
+			<article class="feature">
+				<h3>Secure Booking</h3>
+				<p>Safe payments and clear booking details.</p>
+			</article>
+			<article class="feature">
+				<h3>Customer Support</h3>
+				<p>Fast response and friendly service.</p>
+			</article>
+		</section>
+
+		<section class="preview container" id="popular">
+			<h2>Popular Packages</h2>
+			<div class="grid">
+				<div class="card">
+					<img src="images/sample1.jpg" alt="package 1" onerror="this.style.opacity=0.6">
+					<h4>City Tour</h4>
+					<p>Explore the city with a professional driver.</p>
+				</div>
+				<div class="card">
+					<img src="images/sample2.jpg" alt="package 2" onerror="this.style.opacity=0.6">
+					<h4>Airport Drop</h4>
+					<p>Timely pick-up and drop with flight tracking.</p>
+				</div>
+				<div class="card">
+					<img src="images/sample3.jpg" alt="package 3" onerror="this.style.opacity=0.6">
+					<h4>Wedding Special</h4>
+					<p>Luxury cars and special decorations.</p>
+				</div>
+			</div>
+			<p class="see-more"><a href="php/displapackages.php" class="btn">See all packages</a></p>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container footer-inner">
+			<div>
+				<strong>GlamourRide</strong>
+				<p>Reliable rides and curated packages.</p>
+			</div>
+			<div class="footer-links">
+				<a href="Html/Login.php">Login</a>
+				<a href="Html/Registration.php">Register</a>
+			</div>
+		</div>
+		<div class="copyright">&copy; <span id="year"></span> GlamourRide</div>
+	</footer>
+
+	<script>
+		document.getElementById('year').textContent = new Date().getFullYear();
+	</script>
+	<script src="JS/home.js" defer></script>
+</body>
+</html>

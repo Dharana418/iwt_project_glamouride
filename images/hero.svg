@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="600" viewBox="0 0 1600 600">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0%" stop-color="#6C5CE7"/>
+      <stop offset="50%" stop-color="#00B894"/>
+      <stop offset="100%" stop-color="#FF9F43"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g1)" />
+  <g fill="rgba(255,255,255,0.95)">
+    <text x="80" y="220" font-family="Segoe UI, Roboto, Arial" font-size="56" font-weight="700">GlamourRide</text>
+    <text x="80" y="300" font-family="Segoe UI, Roboto, Arial" font-size="28">Premium rides · Curated packages · Reliable drivers</text>
+  </g>
+  <g opacity="0.12">
+    <circle cx="1400" cy="140" r="120" fill="#ffffff"/>
+    <circle cx="1500" cy="420" r="80" fill="#ffffff"/>
+  </g>
+</svg>
